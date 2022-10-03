@@ -3,8 +3,7 @@ const http = require('http');
 const routes = require('./routes')
 
 class Server {
-  constructor(hostname, port) {
-    this.hostname = hostname
+  constructor(port) {
     this.port = port
   }
   ligarServidor(){
@@ -18,7 +17,7 @@ class Server {
       let route = typeof routes[path] !== "undefined" ? routes[path] : routes["notFound"]
       route(res)
     } )
-    server.listen(this.port, this.hostname, () => {
+    server.listen(this.port, () => {
       console.log(`Server running at http://${this.hostname}:${this.port}/`)
     })
   }
